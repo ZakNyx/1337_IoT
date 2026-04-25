@@ -1,0 +1,39 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: main-ingress
+  annotations:
+    # This tells K3s to use its built-in Traefik router
+    kubernetes.io/ingress.class: "traefik"
+spec:
+  rules:
+    # Rule 1: If they type app1.com -> send to App 1
+    - host: app1.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: app1-service
+                port:
+                  number: 80
+
+    # Rule 2: If they type app2.com -> send to App 2
+    - host: app2.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: app2-service
+                port:
+                  number: 80
+
+  # The Catch-All (App 3): If it doesn't match app1 or app2, send here
+  defaultBackend:
+    service:
+      name: app3-service
+      port:
+        number: 80

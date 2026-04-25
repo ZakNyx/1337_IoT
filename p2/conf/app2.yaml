@@ -1,0 +1,37 @@
+# --- THE DEPLOYMENT (The App) ---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app2-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: app2
+  template:
+    metadata:
+      labels:
+        app: app2
+    spec:
+      containers:
+        - name: app2-container
+          image: hashicorp/http-echo
+          args:
+            - "-text=app2"
+            - "-listen=:8080"
+          ports:
+            - containerPort: 8080
+
+---
+# --- THE SERVICE (The Internal Load Balancer) ---
+apiVersion: v1
+kind: Service
+metadata:
+  name: app2-service
+spec:
+  selector:
+    app: app2
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
