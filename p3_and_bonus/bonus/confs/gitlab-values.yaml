@@ -1,0 +1,60 @@
+global:
+  hosts:
+    domain: gitlab.local
+    https: false
+  ingress:
+    configureCertmanager: false
+    tls:
+      enabled: false
+  shell:
+    port: 32022
+  edition: ce
+
+certmanager-issuer:
+  email: fake@example.com
+
+global:
+  ingress:
+    configureCertmanager: false
+
+nginx-ingress:
+  enabled: false
+
+gitlab-runner:
+  install: false
+
+prometheus:
+  install: false
+
+registry:
+  enabled: false
+
+gitlab:
+  webservice:
+    minReplicas: 1
+    maxReplicas: 1
+  sidekiq:
+    minReplicas: 1
+    maxReplicas: 1
+  gitlab-shell:
+    minReplicas: 1
+    maxReplicas: 1
+  gitaly:
+    persistence:
+      size: 1Gi
+  toolbox:
+    persistence:
+      size: 1Gi
+
+minio:
+  persistence:
+    size: 2Gi
+
+postgresql:
+  persistence:
+    size: 2Gi
+
+redis:
+  master:
+    persistence:
+      size: 1Gi
