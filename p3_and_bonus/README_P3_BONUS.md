@@ -79,8 +79,7 @@ Get the admin password:
 
 ```bash
 kubectl -n argocd get secret argocd-initial-admin-secret \
-  -o jsonpath="{.data.password}" | base64 -d
-echo
+  -o jsonpath="{.data.password}" | base64 -d && echo
 ```
 
 Access the UI:
@@ -89,7 +88,7 @@ Access the UI:
 kubectl port-forward svc/argocd-server -n argocd 8080:443 &
 ```
 
-Open `https://localhost:8080` → login with `admin` + password from above.
+Open `https://localhost:8080` → login with `admin` + password from above. *DONE*
 
 ---
 

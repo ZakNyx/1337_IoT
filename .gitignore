@@ -1,0 +1,16 @@
+# Vagrant state files
+.vagrant/
+
+# Mac OS hidden files (if you or a teammate uses a Mac)
+.DS_Store
+._*
+
+# Windows hidden files
+Thumbs.db
+
+# Editor configurations (VSCode, Vim, etc.)
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
